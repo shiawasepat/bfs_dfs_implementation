@@ -1,12 +1,13 @@
-# File ini menampung jalur-jalur (graph) dari Rumah ke Kampus UC
-
 graph = {
     'Rumah': ['Tentara Pelajar'],
     'Tentara Pelajar': ['Pelabuhan Makassar', 'Sulawesi'],
     'Sulawesi': ['Ahmad Yani'],
-    'Ahmad Yani': ['Kajaolalido'],
+    'Ahmad Yani': ['Kajaolalido', 'Balaikota', 'Benteng Rotterdam'],
+    'Balaikota': ['Thamrin'],
+    'Thamrin': ['Kajaolalido'],
     'Kajaolalido': ['Botolempangan'],
-    'Botolempangan': ['Arief Rate'],
+    'Botolempangan': ['Arief Rate', 'Sultan Hasanuddin'],
+    'Sultan Hasanuddin': ['Lamaddukelleng'],
     'Arief Rate': ['Yosep Latumahina'],
     'Yosep Latumahina': ['Lamaddukelleng'],
     'Pelabuhan Makassar': ['Benteng Rotterdam'],
