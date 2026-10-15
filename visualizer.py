@@ -21,10 +21,13 @@ print(" -> ".join(jalur_dfs) if jalur_dfs else "Jalur tidak ditemukan")
 # Membangun graf dari dictionary
 G = nx.DiGraph(graph)
 
+# Menentukan posisi nodes agar lebih menyebar merata
+pos = nx.kamada_kawai_layout(G)
+# Alternatif lain yang juga merata: pos = nx.spring_layout(G, k=0.9, seed=100)
+
 # Fungsi untuk memvisualisasikan jalur
-def draw_path(G, path, title):
-    plt.figure(figsize=(12, 8))
-    pos = nx.spring_layout(G, seed=10)
+def draw_path(G, path, title, pos):
+    plt.figure(figsize=(14, 10))
     
     # Menggambar seluruh graf
     nx.draw(G, pos, with_labels=True, node_color='lightgreen', node_size=3000, 
@@ -41,21 +44,7 @@ def draw_path(G, path, title):
 
 # Menampilkan visualisasi
 if jalur_bfs:
-    draw_path(G, jalur_bfs, "Visualisasi Jalur BFS")
+    draw_path(G, jalur_bfs, "Visualisasi Jalur BFS", pos)
 
 if jalur_dfs:
-    draw_path(G, jalur_dfs, "Visualisasi Jalur DFS")
-
-# Menambahkan layer ke setiap node
-layers = list(nx.topological_generations(G))
-
-for layer_number, nodes in enumerate(layers):
-    for node in nodes:
-        G.nodes[node]["layer"] = layer_number
-
-pos = nx.multipartite_layout(
-    G,
-    subset_key="layer",
-    align="vertical",
-    scale=2
-)
+    draw_path(G, jalur_dfs, "Visualisasi Jalur DFS", pos)
